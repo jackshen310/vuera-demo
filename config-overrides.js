@@ -1,7 +1,8 @@
 const {
   override,
   addWebpackPlugin,
-  addBabelPlugins
+  addBabelPlugins,
+  fixBabelImports
 } = require("customize-cra");
 // 参考：https://github.com/timsayshey/vuera-react-vue-demo-app/commit/e169832cce222c201421db005fb9f924f9b80999
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
@@ -25,5 +26,10 @@ const addWebpackModuleRule = () => config => {
 module.exports = override(
   addBabelPlugins("vuera/babel"),
   addWebpackPlugin(new VueLoaderPlugin()),
-  addWebpackModuleRule()
+  addWebpackModuleRule(),
+  fixBabelImports("import", {
+    libraryName: "ant-design-vue",
+    libraryDirectory: "es",
+    style: "css"
+  })
 );
