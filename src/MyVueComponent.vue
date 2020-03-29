@@ -1,8 +1,15 @@
 <template>
   <div>
-    <h4>{{this.message}} {{ this.clicky }}</h4>
-    <input @change="handleChange" />
-    <button @click="clickMe()">{{ this.clicky ? "Click" : "Clack" }}</button>
+    <h4>{{ this.message }}</h4>
+    <a-list bordered :dataSource="data">
+      <a-list-item slot="renderItem" slot-scope="item, index">{{
+        item
+      }}</a-list-item>
+      <div slot="header">
+        <a-input v-model="value" @keydown="handleKeydown" />
+      </div>
+      <div slot="footer">total:{{ todoSize }}</div>
+    </a-list>
   </div>
 </template>
 <script>
@@ -10,16 +17,30 @@ export default {
   name: "Testing",
   props: ["message", "onSubmit"],
   methods: {
-    clickMe() {
-      this.clicky = !this.clicky;
-    },
-    handleChange(e) {
-      this.onSubmit(e.target.value);
+    handleKeydown(e) {
+      if (e.key === "Enter") {
+        this.data.push(this.value);
+        this.value = "";
+      }
+    }
+  },
+  watch: {
+    value: function(newValue, oldValue) {
+      this.onSubmit(newValue);
+    }
+  },
+  computed: {
+    todoSize: function() {
+      return this.data.length;
     }
   },
   data() {
     return {
-      clicky: true
+      data: [
+        "Racing car sprays burning fuel into crowd.",
+        "Japanese princess to wed commoner."
+      ],
+      value: ""
     };
   },
   created: function() {

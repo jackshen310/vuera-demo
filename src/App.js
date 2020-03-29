@@ -1,5 +1,10 @@
 import React, { useState } from "react";
+import Vue from "vue";
+import Antd from "ant-design-vue";
 import MyVueComponent from "./MyVueComponent.vue";
+import "ant-design-vue/dist/antd.css";
+Vue.config.productionTip = false;
+Vue.use(Antd);
 
 export default () => {
   const [value, setValue] = useState();
