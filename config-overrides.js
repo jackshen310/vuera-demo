@@ -1,3 +1,4 @@
+// API 参考：https://github.com/arackaf/customize-cra/blob/master/api.md
 const {
   override,
   addWebpackPlugin,
@@ -27,8 +28,14 @@ module.exports = override(
   addBabelPlugins("vuera/babel"),
   addWebpackPlugin(new VueLoaderPlugin()),
   addWebpackModuleRule(),
-  fixBabelImports("import", {
-    libraryName: "ant-design-vue",
+  // https://www.npmjs.com/package/babel-plugin-import
+  fixBabelImports("ant-design-vue", {
+    // libraryName: "ant-design-vue",
+    libraryDirectory: "es",
+    style: "css"
+  }),
+  fixBabelImports("antd", {
+    // libraryName: "antd"
     libraryDirectory: "es",
     style: "css"
   })

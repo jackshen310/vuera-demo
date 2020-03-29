@@ -18,7 +18,7 @@ export default {
   props: ["message", "onSubmit"],
   methods: {
     handleKeydown(e) {
-      if (e.key === "Enter") {
+      if (e.key === "Enter" && this.value) {
         this.data.push(this.value);
         this.value = "";
       }
