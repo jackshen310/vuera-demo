@@ -6,6 +6,8 @@ import { Input as AntdInput, ConfigProvider } from "antd";
 import MyVueComponent from "./MyVueComponent.vue";
 // import "ant-design-vue/dist/antd.css";
 // import "antd/dist/antd.css";
+import styles from "./App.module.css";
+
 Vue.component(Input.name, Input);
 Vue.component(List.name, List);
 Vue.component(List.Item.name, List.Item);
@@ -17,7 +19,7 @@ export default () => {
   const [message, setMessage] = useState("Hello from Vue!!");
   return (
     <ConfigProvider>
-      <div>
+      <div className={styles.App}>
         <AntdInput
           value={message}
           onChange={e => {

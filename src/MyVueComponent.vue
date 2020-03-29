@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h4>{{ this.message }}</h4>
+    <h4 class="red">{{ this.message }}</h4>
     <a-list bordered :dataSource="data">
       <a-list-item slot="renderItem" slot-scope="item, index">{{
         item
@@ -12,6 +12,11 @@
     </a-list>
   </div>
 </template>
+<style scoped>
+.red {
+  color: red;
+}
+</style>
 <script>
 export default {
   name: "Testing",
